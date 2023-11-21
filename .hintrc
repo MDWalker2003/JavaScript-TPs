@@ -7,7 +7,21 @@
       "default",
       {
         "ignore": [
-          "backdrop-filter"
+          "backdrop-filter",
+          "-webkit-text-size-adjust",
+          "-webkit-text-size-adjust",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color",
+          "text-decoration-skip-ink",
+          "text-decoration-skip-ink",
+          "-webkit-tap-highlight-color",
+          "-webkit-tap-highlight-color"
         ]
       }
     ],
@@ -26,5 +40,13 @@
       }
     ],
     "button-type": "off"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 113",
+    "not firefox <= 113",
+    "not safari <= 16.5",
+    "not and_ff <= 113"
+  ]
 }
