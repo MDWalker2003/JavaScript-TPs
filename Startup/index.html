@@ -13,7 +13,7 @@
         document.getElementById('demo').innerHTML = "Hello JS";
         
     </script> -->
-    <script>
+    <!-- <script>
         let name ="john Doe"
         let age1 = 14
         console.log("bonjour je suis "+name+" j'ai "+age1+".")
@@ -38,6 +38,29 @@
         console.log("Année de naissance : " + anneeNaissance)
         console.log("Âge : " + age)
 
+    </script> -->
+    <script>
+        //tableau livre
+        let livre = [
+            {titre:"Le Petit Prince",auteur:"Antoine de Saint Exupéry",disponible:1},
+            {titre:"La Maison du Ciel",auteur:"Françoise Sagan",disponible:0},
+            {titre:"L'Etranger",auteur:"Albert Camus",disponible:0},
+            {titre:"La Recherche du temps perdu",auteur:"Marcel Proust",disponible:1},
+            {titre:"Ulysse",auteur:"James Joyce",disponible:1},
+            {titre:"Pride and Prejudice",auteur:"Jane Austen",disponible:0},
+            {titre:"War and Peace",auteur:"Leo Tolstoy",disponible:0}
+        ]
+        //function 1 : Ajouter livre
+        var newLivre = (titre,auteur)=>{
+            var nTitre = document.getElementById(nTitre).value;
+            var nAuteur = document.getElementById(nAuteur).value;
+            if(nTitre!="" && nAuteur!=""){
+                livre.push({titre:nTitre, auteur:nAuteur, disponible:1})
+                alert("le livre a été ajouté avec succés");
+            }else{
+                alert("veuillez remplir tous les champs")
+            }; 
+        } ;   
     </script>
 </body>
 </html>
