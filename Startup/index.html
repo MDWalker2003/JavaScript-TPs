@@ -7,10 +7,37 @@
     <link rel="stylesheet" href="./ressources/style.css">
 </head>
 <body>
-    <h1>Bonjour tout le monde !!</h1>
+    <!-- <h1>Bonjour tout le monde !!</h1>
     <div id="demo"></div>
     <script>
         document.getElementById('demo').innerHTML = "Hello JS";
+        
+    </script> -->
+    <script>
+        let name ="john Doe"
+        let age1 = 14
+        console.log("bonjour je suis "+name+" j'ai "+age1+".")
+        let x = 10
+        x+= 5
+        x*=3
+        x-=2
+        console.log(x)
+        let fstname = "Mouad"
+        let lstname = "Omlil"
+        var fullname = fstname+" "+lstname
+        console.log(fullname)
+
+
+        var nomComplet = fullname
+        var anneeNaissance = 2003 
+        var prenom = nomComplet.split(' ')[0]
+        var anneeActuelle = new Date().getFullYear()
+        var age = anneeActuelle - anneeNaissance
+        console.log("Nom complet : " + nomComplet)
+        console.log("Prénom : " + prenom)
+        console.log("Année de naissance : " + anneeNaissance)
+        console.log("Âge : " + age)
+
     </script>
 </body>
 </html>
