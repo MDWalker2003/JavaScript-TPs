@@ -1,4 +1,3 @@
-// Exercise 3
 class Book {
     #title;
     #author;
@@ -12,37 +11,74 @@ class Book {
         this.#status = status;
     }
 
-    // Getters and setters for Book properties
+    getTitle() {
+        return this.#title;
+    }
+
+    getAuthor() {
+        return this.#author;
+    }
+
+    getISBN() {
+        return this.#isbn;
+    }
+
+    getStatus() {
+        return this.#status;
+    }
+
+    setTitle(title) {
+        this.#title = title;
+    }
+
+    setAuthor(author) {
+        this.#author = author;
+    }
+
+    setISBN(ISBN) {
+        this.#isbn = ISBN;
+    }
+
+    setStatus(status) {
+        this.#status = status;
+    }
 }
 
 class Person {
     #name;
-    #age;
+    #dob;
 
-    constructor(name, age) {
+    constructor(name, dob) {
         this.#name = name;
-        this.#age = age;
+        this.#dob = dob;
+    }
+
+    getName() {
+        return this.#name;
+    }
+
+    getDOB() {
+        return this.#dob;
     }
 }
 
 class Author extends Person {
-    #books;
+    #bibliography;
 
-    constructor(name, age, books) {
-        super(name, age);
-        this.#books = books || [];
+    constructor(name, dob) {
+        super(name, dob);
+        this.#bibliography = [];
     }
 
-    addBook(book) {
-        this.#books.push(book);
+    addBookToBibliography(book) {
+        this.#bibliography.push(book);
     }
 
-    get bibliography() {
-        return this.#books;
+    getBibliography() {
+        return this.#bibliography;
     }
 }
 
-// Exercise 4
 class User {
     #id;
     #name;
@@ -52,11 +88,11 @@ class User {
         this.#name = name;
     }
 
-    get id() {
+    getId() {
         return this.#id;
     }
 
-    get name() {
+    getName() {
         return this.#name;
     }
 }
@@ -71,29 +107,33 @@ class Member extends User {
 
     borrowBook(book) {
         this.#borrowedBooks.push(book);
-        console.log(`${this.name} has borrowed the book "${book.title}".`);
+        console.log(`${this.getName()} has borrowed the book "${book.getTitle()}".`);
     }
 
     returnBook(book) {
         const index = this.#borrowedBooks.indexOf(book);
         if (index !== -1) {
             this.#borrowedBooks.splice(index, 1);
-            console.log(`${this.name} has returned the book "${book.title}".`);
+            console.log(`${this.getName()} has returned the book "${book.getTitle()}".`);
         } else {
-            console.log(`${this.name} did not borrow the book "${book.title}".`);
+            console.log(`${this.getName()} did not borrow the book "${book.getTitle()}".`);
         }
+    }
+
+    getBorrowedBooks() {
+        return this.#borrowedBooks;
     }
 }
 
 class Librarian extends User {
     addBookToLibrary(book, library) {
         library.addBook(book);
-        console.log(`Librarian ${this.name} has added the book "${book.title}" to the library.`);
+        console.log(`Librarian ${this.getName()} has added the book "${book.getTitle()}" to the library.`);
     }
 
     checkBookStatus(book, library) {
         const status = library.getBookStatus(book);
-        console.log(`Book "${book.title}" is currently ${status}.`);
+        console.log(`Book "${book.getTitle()}" is currently ${status}.`);
     }
 }
 
@@ -120,12 +160,12 @@ class Library {
             if (index !== -1) {
                 this.#books.splice(index, 1);
                 user.borrowBook(book);
-                console.log(`Book "${book.title}" has been borrowed.`);
+                console.log(`Book "${book.getTitle()}" has been borrowed.`);
             } else {
-                console.log(`Book "${book.title}" is not available.`);
+                console.log(`Book "${book.getTitle()}" is not available.`);
             }
         } else {
-            console.log(`${user.name} is not authorized to borrow books.`);
+            console.log(`${user.getName()} is not authorized to borrow books.`);
         }
     }
 
@@ -135,12 +175,12 @@ class Library {
             if (index === -1) {
                 this.#books.push(book);
                 user.returnBook(book);
-                console.log(`Book "${book.title}" has been returned.`);
+                console.log(`Book "${book.getTitle()}" has been returned.`);
             } else {
-                console.log(`Invalid return. Book "${book.title}" is already in the library.`);
+                console.log(`Invalid return. Book "${book.getTitle()}" is already in the library.`);
             }
         } else {
-            console.log(`${user.name} is not authorized to return books.`);
+            console.log(`${user.getName()} is not authorized to return books.`);
         }
     }
 
@@ -149,27 +189,24 @@ class Library {
         return index !== -1 ? "Available" : "Not Available";
     }
 
-    get bibliography() {
+    getBibliography() {
         return this.#books;
     }
 }
 
-// Exercise 5
+// Example usage
+
 const library = new Library();
-const author1 = new Author("John Doe", 40);
-const book1 = new Book("The Great Novel", "John Doe", "1234567890", "Available");
-const member1 = new Member("Alice", 25);
-const librarian1 = new Librarian("Librarian Bob", 30);
+const author = new Author("John Doe", "01-01-1980");
+const book = new Book("The Great Novel", author, "1234567890", "Available");
+const member = new Member("Alice", "123");
+const librarian = new Librarian("Librarian Bob", "456");
 
-library.addBook(book1);
-author1.addBook(book1);
-library.addUser(member1);
-library.addUser(librarian1);
+library.addBook(book);
+author.addBookToBibliography(book);
+library.addUser(member);
+library.addUser(librarian);
 
-library.borrowBook(member1, book1);
-library.returnBook(member1, book1);
-library.borrowBook(librarian1, book1); // Librarians can't borrow books
-
-console.log("Books in Library:", library.bibliography);
-console.log("Member's Borrowed Books:", member1.bibliography);
-console.log("Librarian's Borrowed Books:", librarian1.bibliography);
+library.borrowBook(member, book);
+library.returnBook(member, book);
+library.borrowBook(librarian, book);
